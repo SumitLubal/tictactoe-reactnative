@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   row:{
     flex: 1,
@@ -14,13 +14,22 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center"
+  },
+  container: {
+    flex: 1,
+    height: 34,
+    justifyContent: 'space-evenly',
+    justifyContent: "center",
+    textAlign:"center",
+    borderColor:'#999',
+    borderWidth:1,
   }
 });
 
 class Square extends React.Component {
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>{this.props.symbol}</Text>
       </View>
     );
@@ -31,9 +40,9 @@ class Board extends React.Component {
     return (
       <View style={styles.main}>
         <View style={styles.row}>
-          <Square symbol="0" style={styles.row}/>
-          <Square symbol="1" style={styles.row}/>
-          <Square symbol="2" style={styles.row} />
+          <Square symbol="0"/>
+          <Square symbol="1"/>
+          <Square symbol="2"/>
         </View>
         <View style={styles.row}>
           <Square symbol="3" />
