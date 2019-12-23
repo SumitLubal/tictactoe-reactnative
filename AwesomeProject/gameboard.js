@@ -89,14 +89,13 @@ class Board extends React.Component {
 export class Game extends React.Component {
   constructor(props) {
     super(props);
-    // prepare a array that remembers array
-    // prepare a nextmove
     this.state = {
       squares: Array(9).fill(""),
       isNextMoveX: true,
-      status: "X",
-      history: Array()
+      status: "X"
     };
+    this.history = Array();
+    this.history.push(this.state);
   }
   handleClick(i) {
     if (calculateWinner(this.state.squares) || this.state.squares[i]) {
@@ -104,12 +103,12 @@ export class Game extends React.Component {
     }
     let tmpArr = this.state.squares.slice();
     tmpArr[i] = this.state.isNextMoveX ? "X" : "O";
-    let hist = this.state.history.slice()
+
     this.setState({
       squares: tmpArr,
-      isNextMoveX: !this.state.isNextMoveX,
-      history:Array()
+      isNextMoveX: !this.state.isNextMoveX
     });
+    this.history.push(this.state);
   }
   onClickReset() {
     this.setState({
@@ -118,15 +117,10 @@ export class Game extends React.Component {
     });
   }
   onClickPrevious() {
-    if (this.state.history) {
+    if (!this.history.length > 1) {
       return;
     }
-    let last = this.state.history.slice()
-    
-    this.setState({
-      squares: this.last.pop(),
-      history:last
-    });
+    this.setState(this.history.pop());
   }
   render() {
     let message = "";
